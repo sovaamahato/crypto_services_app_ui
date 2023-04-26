@@ -1,3 +1,6 @@
+import 'package:crypto_service_app_ui/components/black_container.dart';
+import 'package:crypto_service_app_ui/components/white_container.dart';
+
 import '/components/bubble.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           elevation: 0.2,
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 201, 140, 160),
@@ -19,83 +22,49 @@ class HomePage extends StatelessWidget {
             "Swap",
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
-          )),
-      body: Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            color: Color.fromARGB(255, 201, 140, 160),
           ),
-          Positioned(
-            top: 13,
-            child: Container(
-              height: MediaQuery.of(context).size.height * .35,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35),
-                      topRight: Radius.circular(25))),
-            ),
-          ),
-          //black box
-          Positioned(
-            top: 230,
-            child: Container(
-              padding: const EdgeInsets.all(17),
-              height: MediaQuery.of(context).size.height * .65,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.menu,
                   color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35),
-                      topRight: Radius.circular(25))),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyBubble(number: "1",),
-                        MyBubble(number: "2",),
-                        MyBubble(number: "3",)
-                      ],
-                    ),
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyBubble(number: "4",),
-                        MyBubble(number: "5",),
-                        MyBubble(number: "6",)
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyBubble(number: "7",),
-                        MyBubble(number: "8",),
-                        MyBubble(number: "9",)
-                      ],
-                    ),
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MyBubble(number: ".",),
-                        MyBubble(number: "0",),
-                        MyBubble(number: "X",)
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                )),
+                SizedBox(width: 10,),
+          ],
+        ),
+        body: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              color: Color.fromARGB(255, 201, 140, 160),
             ),
-          ),
-        ],
-      ),
-    );
+            Positioned(
+              top: 13,
+              child:WhiteContainer(),),
+            
+            //black box
+            Positioned(
+              top: 233,
+              child: BlackContainer(),
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          label: Container(
+              width: MediaQuery.of(context).size.width / 1.5,
+              child: const Text(
+                'Next',
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              )),
+          // icon: const Icon(Icons.thumb_up),
+          backgroundColor: Colors.white,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 }
